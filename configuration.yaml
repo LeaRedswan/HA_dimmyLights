@@ -1,0 +1,23 @@
+frontend:
+  extra_module_url:
+    - /local/custom_cards/api-light-card.js 
+
+rest_command:
+  get_light_states:
+    url: "http://192.168.2.148:5000/get_all"
+    method: GET
+  set_light:
+    url: "http://192.168.2.148:5000/set"
+    method: POST
+    content_type: 'application/json'
+    payload: '{"channel": "{{ channel }}", "value": "{{ value }}"}'
+  set_all_lights:
+    url: "http://192.168.2.148:5000/set_all"
+    method: POST
+    content_type: 'application/json'
+    payload: '{"value": "{{ value }}"}' 
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.2.148 
